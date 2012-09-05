@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="597b4959-bc19-4e77-a6c7-90c347e38a5e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="ChartDataset" uuid="ca733987-5862-4392-a087-f9de3f939412">
+		<field name="name" class="java.lang.String"/>
+		<field name="mark" class="java.lang.Double"/>
+	</subDataset>
+	<field name="name" class="java.lang.String"/>
+	<field name="rollNo" class="java.lang.String"/>
+	<field name="imagePath" class="java.lang.String"/>
+	<field name="listOfSemesterPaper" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="68" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5f18bc66-cd07-433d-8027-f009601399a5" x="0" y="22" width="555" height="46"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Progress Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="347">
+			<image>
+				<reportElement uuid="607229b7-4530-47c0-944e-f2826751ac2c" x="354" y="0" width="201" height="132"/>
+				<imageExpression><![CDATA[$F{imagePath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="8db83e02-3162-4665-acd1-319eacc1b47e" x="34" y="43" width="100" height="20"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dbfe51bb-fb2f-4e94-b4c0-87f1a14bd1bb" x="36" y="80" width="100" height="20"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Roll No :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f1aec301-2f11-4abf-b9b2-dcddbd98a7fb" x="136" y="43" width="141" height="20"/>
+				<textElement>
+					<font size="13" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="c0631cae-be50-4c0c-8c52-560227edd9e8" x="136" y="80" width="141" height="20"/>
+				<textElement>
+					<font size="13" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rollNo}]]></textFieldExpression>
+			</textField>
+			<bar3DChart>
+				<chart>
+					<reportElement uuid="304c9398-61da-4b54-9a54-24badf4410c6" x="0" y="169" width="555" height="144"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="ChartDataset" uuid="2663a287-e666-4e9b-898b-3e98eefd2e44">
+							<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listOfSemesterPaper})]]></dataSourceExpression>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{name}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{mark}]]></valueExpression>
+						<labelExpression><![CDATA[$F{name}+" gets "+$F{mark}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24"/>
+	</detail>
+	<pageFooter>
+		<band height="19" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
